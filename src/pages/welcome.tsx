@@ -1,7 +1,7 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import { Icons } from "../components/Icons";
 import Card from "../components/ui/Card";
+import Link from "../components/Link";
 
 const welcomeButtonStyle = {
   fontSize: "1.6rem",
@@ -9,7 +9,6 @@ const welcomeButtonStyle = {
   textTransform: "none",
   border: "2px solid",
   borderColor: "primary.main",
-  borderRadius: "8px",
 };
 
 const WelcomePage = () => {
@@ -31,7 +30,7 @@ const WelcomePage = () => {
           justifyContent="center"
           textAlign={"center"}
         >
-          <Icons.Logo style={{ fontSize: "120", color: "primary.main" }} />
+          <Icons.Logo style={{ fontSize: "100", color: "primary.main" }} />
           <Typography
             variant="h1"
             component="h1"
@@ -48,11 +47,11 @@ const WelcomePage = () => {
           <Stack
             direction={"row"}
             spacing={2}
-            sx={{ marginTop: "1rem" }}
+            sx={{ marginTop: "400px" }}
             justifyContent="center"
             alignContent="center"
           >
-            <Link to={"auth/login"}>
+            <Link href={"login"}>
               <Button
                 variant="contained"
                 color="primary"
@@ -62,7 +61,7 @@ const WelcomePage = () => {
                 Log In
               </Button>
             </Link>
-            <Link to={"auth/signup"}>
+            <Link href={"signup"}>
               <Button
                 variant="contained"
                 component="button"

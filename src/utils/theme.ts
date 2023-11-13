@@ -20,6 +20,58 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+          padding: "8px 16px",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#f7f7f7",
+          "&.Mui-focused": {
+            color: "#467558",
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderColor: "#f7f7f7",
+          "& fieldset": {
+            borderColor: "#f7f7f7",
+            borderRadius: 8,
+          },
+          "&:hover fieldset": {
+            borderColor: "#467558",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#467558",
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
+
+// sx={{
+//                 "& .MuiInputLabel-root": {
+//                   color: "green", // Default color
+//                   "&.Mui-focused": {
+//                     color: "blue", // Color when focused
+//                   },
+//                 },
+//                 "& .MuiOutlinedInput-root": {
+//                   borderColor: "white", // Change border color
+//                   "& fieldset": {
+//                     borderColor: "white", // Change border color for the focused state
+//                   },
+//                 },
+//               }}

@@ -11,7 +11,7 @@ const Card: FC<CardProps> = ({ children }) => {
     <MuiCard
       sx={{
         backgroundColor: "#302d2d",
-        boxShadow: "0px 4px 16px rgba(0, 255, 128, 0.4)",
+        boxShadow: (theme) => `0px 8px 16px ${theme.palette.primary.main}`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
 import Layout from "./components/layout/layout";
 import SignUp from "./pages/auth/signup";
-import { Login } from "@mui/icons-material";
+import LoginPage from "./pages/auth/login";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: <LoginPage />,
       },
       {
         path: "/signup",
