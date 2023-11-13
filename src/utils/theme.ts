@@ -29,6 +29,18 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          input: {
+            "&:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 100px #424040 inset",
+              WebkitTextFillColor: "#f7f7f7",
+            },
+          },
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
@@ -51,7 +63,7 @@ const theme = createTheme({
             borderColor: "#467558",
           },
           "&.Mui-focused fieldset": {
-            borderColor: "#467558",
+            borderColor: "#0000",
           },
         },
       },

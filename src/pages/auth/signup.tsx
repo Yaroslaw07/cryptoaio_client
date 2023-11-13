@@ -9,17 +9,31 @@ import {
 } from "@mui/material";
 import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
+import { signUp as AwsSignUp } from "../../services/aws-cognito";
+import { useEffect, useState } from "react";
+import { useUser } from "../../hooks/useUser";
 
 const SignUp = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { status } = useUser();
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const res = await AwsSignUp(email, password, { email, nickname: username });
+    console.log(res);
   };
+
+  useEffect(() => {
+    if (status !== "loading") {
+      if (status === "authenticated") {
+        window.location.href = "/dashboard";
+      }
+    }
+  }, [status]);
 
   return (
     <Container
@@ -61,6 +75,8 @@ const SignUp = () => {
               name="username"
               autoComplete="username"
               autoFocus
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -69,8 +85,8 @@ const SignUp = () => {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
-              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -81,6 +97,8 @@ const SignUp = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -104,7 +122,7 @@ const SignUp = () => {
               </Grid>
               <Grid item>
                 <Link href="/login" variant="body1">
-                  Sign Up
+                  Log In
                 </Link>
               </Grid>
             </Grid>

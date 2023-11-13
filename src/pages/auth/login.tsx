@@ -9,16 +9,38 @@ import {
 import Link from "../../components/Link";
 import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
+import { useEffect, useState } from "react";
+import { logIn as AwsLogin } from "../../services/aws-cognito";
+import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { saveUser, session, status } = useUser();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const newSession = await AwsLogin(email, password);
+
+    if (!newSession) {
+      console.log("error");
+      return;
+    }
+
+    await saveUser(newSession);
+    console.log({ session, status });
   };
+
+  useEffect(() => {
+    console.log(status);
+    if (status === "authenticated") {
+      navigate("/dashboard");
+    }
+  }, [status]);
 
   return (
     <Container
@@ -58,8 +80,10 @@ const LoginPage = () => {
               id="email"
               label="Email Address"
               name="email"
+              value={email}
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -69,7 +93,9 @@ const LoginPage = () => {
               label="Password"
               type="password"
               id="password"
+              value={password}
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -93,7 +119,7 @@ const LoginPage = () => {
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body1">
-                  Log In
+                  Sign Up
                 </Link>
               </Grid>
             </Grid>
