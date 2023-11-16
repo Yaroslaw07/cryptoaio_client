@@ -10,7 +10,6 @@
   },
   "hosting": {
     "amplifyhosting": {
-      "lastPushTimeStamp": "2023-11-16T15:25:42.711Z",
       "service": "amplifyhosting",
       "type": "cicd"
     }
@@ -45,38 +44,6 @@
         {
           "category": "auth",
           "resourceName": "cryptoaioclient"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
         }
       ]
     },

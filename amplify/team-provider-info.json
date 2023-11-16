@@ -1,24 +1,18 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cryptoaioclient-dev-160401-authRole",
-      "UnauthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-160401-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-160401-authRole",
+      "AuthRoleName": "amplify-cryptoaioclient-dev-172358-authRole",
+      "UnauthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-172358-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-172358-authRole",
       "Region": "eu-north-1",
-      "DeploymentBucketName": "amplify-cryptoaioclient-dev-160401-deployment",
-      "UnauthRoleName": "amplify-cryptoaioclient-dev-160401-unauthRole",
-      "StackName": "amplify-cryptoaioclient-dev-160401",
-      "StackId": "arn:aws:cloudformation:eu-north-1:102177688943:stack/amplify-cryptoaioclient-dev-160401/6132fd40-8491-11ee-9a4c-0a67cdcfa168",
-      "AmplifyAppId": "dnf8stdxb60q3"
+      "DeploymentBucketName": "amplify-cryptoaioclient-dev-172358-deployment",
+      "UnauthRoleName": "amplify-cryptoaioclient-dev-172358-unauthRole",
+      "StackName": "amplify-cryptoaioclient-dev-172358",
+      "StackId": "arn:aws:cloudformation:eu-north-1:102177688943:stack/amplify-cryptoaioclient-dev-172358/8c509540-849c-11ee-896b-0e3ad7594136",
+      "AmplifyAppId": "dro09axt2oqoi"
     },
     "categories": {
       "auth": {
-        "cryptoaioclientecc46393": {
-          "userPoolId": "eu-north-1_Ur9C1opav",
-          "userPoolName": "crypto_AIO_Test_Pool",
-          "webClientId": "730jbmh8skoiacatrn9gfafmee",
-          "nativeClientId": "730jbmh8skoiacatrn9gfafmee"
-        },
         "cryptoaioclient": {
           "userPoolId": "eu-north-1_1udYoYYLk",
           "userPoolName": "crypto_AIO_pool",
@@ -28,7 +22,7 @@
       },
       "hosting": {
         "amplifyhosting": {
-          "appId": "dnf8stdxb60q3",
+          "appId": "dro09axt2oqoi",
           "type": "cicd"
         }
       }
