@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSession } from "../hooks/useSession";
+import useAuth from "../hooks/useAuth";
 import Backdrop from "../components/ui/Backdrop";
 
 export const DashboardPage = () => {
-  const { status } = useSession();
+  const { status, logOut } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,12 +15,13 @@ export const DashboardPage = () => {
   }, [status]);
 
   if (status === "loading") {
-    return <Backdrop open={true} />;
+    return <Backdrop open={true}></Backdrop>;
   }
 
   return (
     <div>
       <h1>Dashboard</h1>
+      <button onClick={logOut}>Logout</button>
     </div>
   );
 };

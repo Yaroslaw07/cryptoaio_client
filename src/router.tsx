@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
 import Layout from "./components/layout/layout";
-import SignUp from "./pages/auth/signup";
-import LoginPage from "./pages/auth/login";
+import SignUp from "./pages/auth/Signup";
+import LoginPage from "./pages/auth/Login";
 import UserLayout from "./components/layout/userLayout";
 import { DashboardPage } from "./pages/Dashboard";
 

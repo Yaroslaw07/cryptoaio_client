@@ -1,0 +1,37 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cryptoaioclient-dev-160401-authRole",
+      "UnauthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-160401-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::102177688943:role/amplify-cryptoaioclient-dev-160401-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-cryptoaioclient-dev-160401-deployment",
+      "UnauthRoleName": "amplify-cryptoaioclient-dev-160401-unauthRole",
+      "StackName": "amplify-cryptoaioclient-dev-160401",
+      "StackId": "arn:aws:cloudformation:eu-north-1:102177688943:stack/amplify-cryptoaioclient-dev-160401/6132fd40-8491-11ee-9a4c-0a67cdcfa168",
+      "AmplifyAppId": "dnf8stdxb60q3"
+    },
+    "categories": {
+      "auth": {
+        "cryptoaioclientecc46393": {
+          "userPoolId": "eu-north-1_Ur9C1opav",
+          "userPoolName": "crypto_AIO_Test_Pool",
+          "webClientId": "730jbmh8skoiacatrn9gfafmee",
+          "nativeClientId": "730jbmh8skoiacatrn9gfafmee"
+        },
+        "cryptoaioclient": {
+          "userPoolId": "eu-north-1_1udYoYYLk",
+          "userPoolName": "crypto_AIO_pool",
+          "webClientId": "6h3i8abphjbfb493drns5le7tb",
+          "nativeClientId": "6h3i8abphjbfb493drns5le7tb"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dnf8stdxb60q3",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}

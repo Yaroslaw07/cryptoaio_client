@@ -1,15 +1,15 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import theme from "../../utils/theme";
-import { SessionProvider } from "../../contexts/session";
+import { AuthProvider } from "../../contexts/auth";
 
 const Layout = () => {
   return (
     <ThemeProvider theme={theme}>
-      <SessionProvider>
+      <AuthProvider>
         <CssBaseline />
         <Outlet />
-      </SessionProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
