@@ -10,76 +10,12 @@
   },
   "hosting": {
     "amplifyhosting": {
-      "lastPushTimeStamp": "2023-11-16T15:25:42.711Z",
+      "lastPushTimeStamp": "2023-11-16T16:30:45.772Z",
       "service": "amplifyhosting",
       "type": "cicd"
     }
   },
   "parameters": {
-    "AMPLIFY_auth_cryptoaioclient_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclient"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclient_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclient"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclient_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclient"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclient_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclient"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
-    "AMPLIFY_auth_cryptoaioclientecc46393_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "cryptoaioclientecc46393"
-        }
-      ]
-    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
