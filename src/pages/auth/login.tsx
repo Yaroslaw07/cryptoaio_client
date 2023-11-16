@@ -10,12 +10,11 @@ import Link from "../../components/Link";
 import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
 import { useEffect, useState } from "react";
-import { logIn as AwsLogin } from "../../services/aws-cognito";
-import { useUser } from "../../hooks/useUser";
+import { useSession } from "../../hooks/useSession";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const { saveUser, session, status } = useUser();
+  const { status, login } = useSession();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -24,19 +23,10 @@ const LoginPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newSession = await AwsLogin(email, password);
-
-    if (!newSession) {
-      console.log("error");
-      return;
-    }
-
-    await saveUser(newSession);
-    console.log({ session, status });
+    login(email, password);
   };
 
   useEffect(() => {
-    console.log(status);
     if (status === "authenticated") {
       navigate("/dashboard");
     }

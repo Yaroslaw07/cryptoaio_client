@@ -69,19 +69,18 @@ export const logIn = async (
   });
 };
 
-export const getCognitoUserFromSession = (
-  session: CognitoUserSession
-): CognitoUser | null => {
-  const idTokenPayload = session.getIdToken().payload;
-
-  const username = idTokenPayload["cognito:username"];
-
-  const userData = {
-    Username: username,
-    Pool: userPool,
-  };
-
-  const cognitoUser = new CognitoUser(userData);
-
-  return cognitoUser;
+export const getSessionFromCognitoUser = (
+  cognitoUser: CognitoUser
+): Promise<CognitoUserSession> => {
+  return new Promise((resolve, reject) => {
+    cognitoUser.getSession(
+      (err: Error | null, session?: CognitoUserSession | null) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(session!);
+        }
+      }
+    );
+  });
 };

@@ -36,7 +36,7 @@ const WelcomePage = () => {
             component="h1"
             sx={{
               lineHeight: "0.9",
-              fontWeight: "800",
+              fontWeight: "600",
               marginTop: "0.5rem",
               fontSize: "1",
             }}

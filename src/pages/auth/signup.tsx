@@ -11,10 +11,12 @@ import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
 import { signUp as AwsSignUp } from "../../services/aws-cognito";
 import { useEffect, useState } from "react";
-import { useUser } from "../../hooks/useUser";
+import { useSession } from "../../hooks/useSession";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const { status } = useUser();
+  const { status } = useSession();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -23,8 +25,15 @@ const SignUp = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const res = await AwsSignUp(email, password, { email, nickname: username });
-    console.log(res);
+    try {
+      await AwsSignUp(email, password, {
+        email,
+        nickname: username,
+      });
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {

@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
-import { Backdrop } from "@mui/material";
+import { useSession } from "../hooks/useSession";
+import Backdrop from "../components/ui/Backdrop";
 
 export const DashboardPage = () => {
-  const { status, loadUserData, session } = useUser();
+  const { status } = useSession();
   const navigate = useNavigate();
 
   useEffect(() => {
-    loadUserData();
-  }, []);
-
-  useEffect(() => {
+    console.log("Dashboard Status:", status);
     if (status === "unauthenticated") {
       navigate("/login");
     }
@@ -20,8 +17,6 @@ export const DashboardPage = () => {
   if (status === "loading") {
     return <Backdrop open={true} />;
   }
-
-  console.log("Dashboard Session:", session);
 
   return (
     <div>
