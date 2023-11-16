@@ -9,13 +9,12 @@ import {
 } from "@mui/material";
 import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
-import { signUp as AwsSignUp } from "../../services/aws-cognito";
-import { useEffect, useState } from "react";
-import { useSession } from "../../hooks/useSession";
+import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const { status } = useSession();
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -25,24 +24,10 @@ const SignUp = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      await AwsSignUp(email, password, {
-        email,
-        nickname: username,
-      });
-      navigate("/login");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    await signUp({ username, email, password });
 
-  useEffect(() => {
-    if (status !== "loading") {
-      if (status === "authenticated") {
-        window.location.href = "/dashboard";
-      }
-    }
-  }, [status]);
+    navigate("/login");
+  };
 
   return (
     <Container

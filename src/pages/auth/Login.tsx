@@ -10,11 +10,11 @@ import Link from "../../components/Link";
 import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
 import { useEffect, useState } from "react";
-import { useSession } from "../../hooks/useSession";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const LoginPage = () => {
-  const { status, login } = useSession();
+  const { status, logIn } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const LoginPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    login(email, password);
+    logIn({ username: email, password });
   };
 
   useEffect(() => {
