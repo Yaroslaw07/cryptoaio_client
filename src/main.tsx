@@ -5,7 +5,8 @@ import router from "./router.tsx";
 import "./main.css";
 
 import { Amplify } from "aws-amplify";
-import config from "./amplifyconfiguration.json";
+import config from "./amplify-config.ts";
+
 Amplify.configure(config);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

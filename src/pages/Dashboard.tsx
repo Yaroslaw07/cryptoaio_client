@@ -1,22 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import Backdrop from "../components/ui/Backdrop";
 
 export const DashboardPage = () => {
-  const { status, logOut } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("Dashboard Status:", status);
-    if (status === "unauthenticated") {
-      navigate("/login");
-    }
-  }, [status]);
-
-  if (status === "loading") {
-    return <Backdrop open={true}></Backdrop>;
-  }
+  const { logOut } = useAuth();
 
   return (
     <div>
