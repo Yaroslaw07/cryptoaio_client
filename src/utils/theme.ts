@@ -42,14 +42,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "rgba(35, 33, 33, 0.4)",
-          boxShadow: `0px 4px 4px #3c634b, 0px -2px 4px #3c634b`,
+          boxShadow: `0px 2px 4px #3c634b, 0px -1px 4px #3c634b`,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           alignContent: "center",
           borderRadius: "16px",
-          minHeight: "200px",
         },
       },
     },

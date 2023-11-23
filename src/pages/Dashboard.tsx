@@ -7,9 +7,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import ScriptCard from "../components/dashboard/ScriptCard";
+import ScriptCard from "../components/dashboard/GridScriptCard";
 import useAppBar from "../hooks/useAppBar";
 import { Icons } from "../components/Icons";
+import { useEffect } from "react";
 
 const scripts = [
   {
@@ -20,17 +21,24 @@ const scripts = [
   {
     id: 2,
     name: "Script 2",
-    status: "Running",
+    status: "Stopped",
+  },
+  {
+    id: 3,
+    name: "Script 3",
+    status: "Error",
   },
 ];
 
 export const DashboardPage = () => {
   const { setTitle } = useAppBar();
 
-  setTitle("Dashboard");
+  useEffect(() => {
+    setTitle("Dashboard");
+  }, []);
 
   return (
-    <>
+    <Box sx={{ width: "100%" }}>
       <Stack
         spacing={2}
         direction="row"
@@ -63,7 +71,11 @@ export const DashboardPage = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: "0.9rem", paddingTop: "4px", paddingRight: "8px" }}
+            sx={{
+              fontSize: "0.9rem",
+              paddingTop: "0.2rem",
+              paddingRight: "0.4rem",
+            }}
           >
             Add new
           </Typography>
@@ -71,35 +83,25 @@ export const DashboardPage = () => {
         </Button>
       </Stack>
 
-      <Box>
-        <Grid container spacing={4} sx={{ marginTop: "8px" }}>
-          {scripts.map((script) => (
-            <Grid item key={script.id}>
-              <ScriptCard script={script} />
-            </Grid>
-          ))}
-          {scripts.map((script) => (
-            <Grid item key={script.id}>
-              <ScriptCard script={script} />
-            </Grid>
-          ))}
-          {scripts.map((script) => (
-            <Grid item key={script.id}>
-              <ScriptCard script={script} />
-            </Grid>
-          ))}
-          {scripts.map((script) => (
-            <Grid item key={script.id}>
-              <ScriptCard script={script} />
-            </Grid>
-          ))}
-          {scripts.map((script) => (
-            <Grid item key={script.id}>
-              <ScriptCard script={script} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    </>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          marginTop: "16px",
+          width: "102%",
+          marginX: "-20px",
+        }}
+      >
+        {scripts.map((script) => (
+          <ScriptCard key={script.id} script={script} />
+        ))}
+        {scripts.map((script) => (
+          <ScriptCard key={script.id} script={script} />
+        ))}
+        {scripts.map((script) => (
+          <ScriptCard key={script.id} script={script} />
+        ))}
+      </Grid>
+    </Box>
   );
 };
