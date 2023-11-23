@@ -5,9 +5,10 @@ import {
   Grid,
   TextField,
   Typography,
+  Card,
+  CardContent,
 } from "@mui/material";
 import Link from "../../components/Link";
-import Card from "../../components/ui/Card";
 import { Icons } from "../../components/Icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,77 +45,80 @@ const LoginPage = () => {
       }}
     >
       <Card>
-        <Box
-          sx={{
-            marginTop: "20px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Icons.Logo
-            style={{
-              fontSize: "100",
-              color: "primary.main",
-              marginBottom: "20px",
+        <CardContent>
+          <Box
+            sx={{
+              marginTop: "20px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-          />
-          <Typography component="h1" variant="h4" sx={{ fontWeight: "600" }}>
-            Login
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-              autoComplete="email"
-              autoFocus
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              value={password}
-              autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid
-              container
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
+          >
+            <Icons.Logo
+              style={{
+                fontSize: "100",
+                color: "primary.main",
+                marginBottom: "20px",
               }}
-            >
-              <Grid item>
-                <Typography variant="body1" sx={{ marginTop: "1px" }}>
-                  Don't have an account?{" "}
-                </Typography>
+            />
+            <Typography component="h1" variant="h4" sx={{ fontWeight: "600" }}>
+              Login
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                value={email}
+                autoComplete="email"
+                autoFocus
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={password}
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "0px 8px",
+                }}
+              >
+                <Grid item>
+                  <Typography variant="body1" sx={{ marginTop: "1px" }}>
+                    Don't have an account?{" "}
+                  </Typography>
+                </Grid>
+                <Grid item sx={{ marginRight: "2px" }}>
+                  <Link href="/signup" variant="body1">
+                    Sign Up
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body1">
-                  Sign Up
-                </Link>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
+        </CardContent>
       </Card>
     </Container>
   );

@@ -5,7 +5,7 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#467558",
+      main: "#3c634b",
     },
     secondary: {
       main: "#302d2d",
@@ -14,7 +14,7 @@ const theme = createTheme({
       default: "#1c1c1c",
     },
     text: {
-      primary: "#f7f7f7",
+      primary: "#ededed",
     },
     error: {
       main: red.A400,
@@ -29,13 +29,37 @@ const theme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(35, 33, 33, 0.4)",
+          borderEndEndRadius: "8px",
+          borderEndStartRadius: "8px",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(35, 33, 33, 0.4)",
+          boxShadow: `0px 4px 4px #3c634b, 0px -2px 4px #3c634b`,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "center",
+          borderRadius: "16px",
+          minHeight: "200px",
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
           input: {
             "&:-webkit-autofill": {
-              WebkitBoxShadow: "0 0 0 100px #424040 inset",
-              WebkitTextFillColor: "#f7f7f7",
+              WebkitBoxShadow: "0 0 0 100px #2d2a2a inset",
+              WebkitTextFillColor: "#ededed",
             },
           },
         },
@@ -44,9 +68,9 @@ const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: "#f7f7f7",
+          color: "#ededed",
           "&.Mui-focused": {
-            color: "#467558",
+            color: "#3c634b",
           },
         },
       },
@@ -54,16 +78,40 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          borderColor: "#f7f7f7",
+          borderColor: "#ededed",
           "& fieldset": {
-            borderColor: "#f7f7f7",
+            borderColor: "#ededed",
             borderRadius: 8,
           },
           "&:hover fieldset": {
-            borderColor: "#467558",
+            borderColor: "#3c634b",
           },
           "&.Mui-focused fieldset": {
-            borderColor: "#0000",
+            borderColor: "#ededed",
+          },
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          margin: 0,
+          padding: 0,
+          boxSizing: "border-box",
+          fontFamily: "Roboto, sans-serif",
+          position: "relative",
+          overflow: "hidden",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background:
+              "linear-gradient(148deg, rgba(26,29,27,1) 0%, rgba(27,34,29,1) 18%, rgba(21,26,22,1) 52%, rgba(22,27,23,1) 78%, rgba(29,33,30,1) 100%, rgba(2,0,36,1) 1000%);",
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            zIndex: -1,
           },
         },
       },
