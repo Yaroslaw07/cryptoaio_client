@@ -11,6 +11,7 @@ import ScriptCard from "../components/dashboard/GridScriptCard";
 import useAppBar from "../hooks/useAppBar";
 import { Icons } from "../components/Icons";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const scripts = [
   {
@@ -33,9 +34,15 @@ const scripts = [
 export const DashboardPage = () => {
   const { setTitle } = useAppBar();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setTitle("Dashboard");
   }, []);
+
+  const handleNewScript = () => {
+    navigate("/scripts/new");
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -58,7 +65,7 @@ export const DashboardPage = () => {
               <Icons.Search style={{ color: "white" }} />
             </InputAdornment>
           }
-          sx={{ flex: 1, height: "98%" }}
+          sx={{ flex: 1, height: "95%" }}
         />
 
         <Button
@@ -68,7 +75,9 @@ export const DashboardPage = () => {
             width: "120px",
             padding: "2px",
             paddingLeft: "8px",
+            marginBottom: "2px",
           }}
+          onClick={handleNewScript}
         >
           <Typography
             sx={{
@@ -92,12 +101,6 @@ export const DashboardPage = () => {
           marginX: "-20px",
         }}
       >
-        {scripts.map((script) => (
-          <ScriptCard key={script.id} script={script} />
-        ))}
-        {scripts.map((script) => (
-          <ScriptCard key={script.id} script={script} />
-        ))}
         {scripts.map((script) => (
           <ScriptCard key={script.id} script={script} />
         ))}

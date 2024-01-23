@@ -9,10 +9,17 @@ import {
 import { Icons } from "../Icons";
 import useAuth from "../../hooks/useAuth";
 import useAppBar from "../../hooks/useAppBar";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const { logOut } = useAuth();
   const { title } = useAppBar();
+
+  const onLogoClick = () => {
+    navigate("/dashboard");
+  };
 
   return (
     <AppBar position="static" sx={{ flexGrow: "0" }}>
@@ -24,6 +31,7 @@ const Header = () => {
               color: "primary.main",
               fontWeight: "600",
             }}
+            onClick={onLogoClick}
           />
           <Box
             sx={{
@@ -49,6 +57,7 @@ const Header = () => {
           variant="contained"
           size="medium"
           onClick={logOut}
+          sx={{ mb: "2px" }}
         >
           Logout
         </Button>

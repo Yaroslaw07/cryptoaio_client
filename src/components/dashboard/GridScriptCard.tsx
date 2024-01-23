@@ -9,6 +9,7 @@ import {
 import scriptInfo from "../../types/scriptInfo";
 import { FC } from "react";
 import { Icons } from "../Icons";
+import { useNavigate } from "react-router-dom";
 
 interface ScriptCardProps {
   script: scriptInfo;
@@ -16,6 +17,8 @@ interface ScriptCardProps {
 
 const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
   const { id, name, status } = script;
+
+  const navigate = useNavigate();
 
   const statusColor = (() => {
     switch (status) {
@@ -36,10 +39,14 @@ const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
     console.log("More options of", id);
   };
 
+  const handleScriptClick = () => {
+    navigate("/scripts/" + id);
+  };
+
   return (
     <Grid
       item
-      xs={12} // Ensure the grid item takes up the entire width
+      xs={12}
       sm={6}
       md={4}
       lg={3}
@@ -49,6 +56,7 @@ const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
           transform: "scale(1.02)",
         },
       }}
+      onClick={() => handleScriptClick()}
     >
       <Card sx={{ height: "96px" }}>
         <Grid container sx={{ height: "100%" }}>
@@ -81,8 +89,9 @@ const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
             <ButtonBase
               sx={{ borderRadius: "8px" }}
               onClick={handleMoreOptions}
+              disableRipple
             >
-              <Icons.CardOptions sx={{ fontSize: "25px" }} />
+              <Icons.CardOptions sx={{ mt: "-10px", fontSize: "25px" }} />
             </ButtonBase>
           </Grid>
         </Grid>

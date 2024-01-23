@@ -8,7 +8,9 @@ Amplify.configure({
       userPoolClientId: config.Cognito.userPoolClientId,
     },
   },
+  API: {
+    REST: {},
+  },
 });
 
-// You can get the current config object
 export default Amplify.getConfig();

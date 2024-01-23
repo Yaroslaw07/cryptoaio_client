@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import WelcomePage from "./pages/welcome";
+import WelcomePage from "./pages/Welcome";
 import Layout from "./components/layout/Layout";
 import SignUp from "./pages/auth/Signup";
 import LoginPage from "./pages/auth/Login";
 import UserLayout from "./components/layout/UserLayout";
 import { DashboardPage } from "./pages/Dashboard";
+import ScriptPage from "./pages/scripts/ScriptPage";
+import NewScriptPage from "./pages/scripts/NewScriptPage";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +38,12 @@ const router = createBrowserRouter([
             element: <div>Profile</div>,
           },
           {
-            path: "/script/:scriptId",
-            element: <div>Script with his id</div>,
+            path: "/scripts/:scriptId",
+            element: <ScriptPage />,
+          },
+          {
+            path: "/scripts/new",
+            element: <NewScriptPage />,
           },
         ],
       },
