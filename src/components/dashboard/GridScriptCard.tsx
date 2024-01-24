@@ -10,6 +10,7 @@ import scriptInfo from "../../types/scriptInfo";
 import { FC } from "react";
 import { Icons } from "../Icons";
 import { useNavigate } from "react-router-dom";
+import { getStatusColor } from "../../utils/status-diplaying";
 
 interface ScriptCardProps {
   script: scriptInfo;
@@ -19,19 +20,6 @@ const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
   const { id, name, status } = script;
 
   const navigate = useNavigate();
-
-  const statusColor = (() => {
-    switch (status) {
-      case "Running":
-        return "#68aa6a";
-      case "Stopped":
-        return "#dddc82";
-      case "Error":
-        return "#cc5757";
-      default:
-        return "#e0e0e0";
-    }
-  })();
 
   const handleMoreOptions = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -77,7 +65,7 @@ const GridScriptCard: FC<ScriptCardProps> = ({ script }) => {
               </Typography>
               <Stack direction={"row"} spacing={0.8} alignContent={"center"}>
                 <Icons.StatusCircle
-                  style={{ color: statusColor, fontSize: "24px" }}
+                  style={{ color: getStatusColor(status), fontSize: "24px" }}
                 />
                 <Typography sx={{ fontSize: 16, pt: "0.05rem" }}>
                   {status}

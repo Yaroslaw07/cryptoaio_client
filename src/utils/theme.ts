@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
-// A custom theme for this app
 const theme = createTheme({
   palette: {
     primary: {
@@ -15,6 +14,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#ededed",
+      disabled: "#ededed",
     },
     error: {
       main: red.A400,
@@ -26,6 +26,11 @@ const theme = createTheme({
         root: {
           borderRadius: "8px",
           padding: "8px 16px",
+          "&.Mui-disabled": {
+            background: "#1c1c1c",
+            color: "#ededed",
+            border: "1px solid #3c634b",
+          },
         },
       },
     },
@@ -119,18 +124,3 @@ const theme = createTheme({
 });
 
 export default theme;
-
-// sx={{
-//                 "& .MuiInputLabel-root": {
-//                   color: "green", // Default color
-//                   "&.Mui-focused": {
-//                     color: "blue", // Color when focused
-//                   },
-//                 },
-//                 "& .MuiOutlinedInput-root": {
-//                   borderColor: "white", // Change border color
-//                   "& fieldset": {
-//                     borderColor: "white", // Change border color for the focused state
-//                   },
-//                 },
-//               }}
