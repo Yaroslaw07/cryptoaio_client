@@ -36,8 +36,8 @@ const ScriptPage = () => {
   };
 
   useEffect(() => {
-    setAppBarTitle("Name of script");
-  }, []);
+    setAppBarTitle(script.name);
+  }, [script.name]);
 
   return (
     <Card
