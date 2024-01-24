@@ -5,7 +5,7 @@ import TitleStatus from "../../components/scripts/TitleStatus";
 import JsonConfig from "../../components/scripts/JsonConfig";
 import Logs from "../../components/scripts/Logs";
 
-const script = {
+let script = {
   id: 1,
   name: "Name of script",
   status: "Stopped",
@@ -16,21 +16,19 @@ const script = {
 const ScriptPage = () => {
   const { setTitle: setAppBarTitle } = useAppBar();
 
-  const [title, setTitle] = useState(script.name);
-  const [jsonInput, setJsonInput] = useState(script.json);
   const [status, setStatus] = useState(script.status);
-  const [logs] = useState<string>(script.logs);
 
   const [editTitle, setEditTitle] = useState(false);
   const [editJson, setEditJsonInput] = useState(false);
 
-  const saveTitle = () => {
-    console.log("Title saved:", title);
+  const saveTitle = (name: string) => {
     setEditTitle(false);
+    script = { ...script, name: name };
   };
 
-  const saveJson = () => {
-    setEditJsonInput(false); // Disable edit mode after saving
+  const saveJson = (json: string) => {
+    setEditJsonInput(false);
+    script = { ...script, json: json };
   };
 
   const handleScriptAction = () => {
@@ -53,8 +51,7 @@ const ScriptPage = () => {
       }}
     >
       <TitleStatus
-        title={title}
-        setTitle={setTitle}
+        title={script.name}
         saveTitle={saveTitle}
         status={status}
         editTitle={editTitle}
@@ -62,20 +59,20 @@ const ScriptPage = () => {
       />
 
       <JsonConfig
-        json={jsonInput}
+        json={script.json}
         saveJson={saveJson}
         editJson={editJson}
         setEditJsonInput={setEditJsonInput}
         isEditable={status === "Stopped"}
       />
 
-      <Logs logs={logs} />
+      <Logs logs={script.logs} />
 
       <Button
         variant="contained"
         fullWidth
         sx={{ fontSize: "1rem", fontWeight: "600" }}
-        disabled={(status === "Stopped" && editJson) || editTitle}
+        disabled={status === "Stopped" && editJson}
         onClick={handleScriptAction}
       >
         {status === "Running" ? "Stop script" : "Start script"}

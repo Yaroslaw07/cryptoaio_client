@@ -1,12 +1,11 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { getStatusColor } from "../../utils/status-diplaying";
 import { Icons } from "../Icons";
 
 interface TitleStatusProps {
   title: string;
-  setTitle: (title: string) => void;
-  saveTitle: () => void;
+  saveTitle: (name: string) => void;
   status: string;
   editTitle: boolean;
   setEditTitle: (editTitle: boolean) => void;
@@ -14,12 +13,18 @@ interface TitleStatusProps {
 
 const TitleStatus: FC<TitleStatusProps> = ({
   title,
-  setTitle,
   saveTitle,
   status,
   editTitle,
   setEditTitle,
 }) => {
+  const [titleInput, setTitleInput] = useState(title);
+
+  const handleNameSaving = () => {
+    if (titleInput === "") return;
+    saveTitle(titleInput);
+  };
+
   return (
     <Box width={"100%"}>
       <Box
@@ -33,10 +38,10 @@ const TitleStatus: FC<TitleStatusProps> = ({
       >
         <TextField
           variant="outlined"
-          value={title}
+          value={titleInput}
           autoFocus
           size="medium"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitleInput(e.target.value)}
           sx={{
             height: "60px",
             fontSize: "1.1rem",
@@ -63,7 +68,11 @@ const TitleStatus: FC<TitleStatusProps> = ({
               Edit title
             </Button>
           ) : (
-            <Button variant="contained" onClick={saveTitle}>
+            <Button
+              variant="contained"
+              onClick={handleNameSaving}
+              disabled={titleInput === ""}
+            >
               Save title
             </Button>
           )}

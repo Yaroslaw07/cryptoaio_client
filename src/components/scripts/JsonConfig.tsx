@@ -1,9 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
+import isValidJson from "../../utils/jsonChecker";
 
 interface JsonConfigProps {
   json: string;
-  saveJson: () => void;
+  saveJson: (json: string) => void;
   editJson: boolean;
   setEditJsonInput: (editJson: boolean) => void;
   isEditable: boolean;
@@ -17,6 +18,17 @@ const JsonConfig: FC<JsonConfigProps> = ({
   isEditable,
 }) => {
   const [jsonInput, setJsonInput] = useState(json);
+  const [error, setError] = useState("");
+
+  const handleSavingJson = () => {
+    if (jsonInput === "" || jsonInput === "{}" || !isValidJson(jsonInput)) {
+      setError("Invalid JSON");
+      return;
+    } else {
+      setError("");
+      saveJson(jsonInput);
+    }
+  };
 
   return (
     <Box width={"100%"}>
@@ -34,7 +46,7 @@ const JsonConfig: FC<JsonConfigProps> = ({
           variant="contained"
           color="primary"
           disabled={!isEditable}
-          onClick={editJson ? saveJson : () => setEditJsonInput(true)}
+          onClick={editJson ? handleSavingJson : () => setEditJsonInput(true)}
         >
           {editJson ? "Save JSON" : "Edit JSON"}
         </Button>
@@ -55,6 +67,8 @@ const JsonConfig: FC<JsonConfigProps> = ({
             },
           },
         }}
+        error={error !== ""}
+        helperText={error}
       />
     </Box>
   );
