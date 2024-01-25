@@ -6,7 +6,7 @@ import "./main.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Amplify } from "aws-amplify";
-import config from "./amplify-config.ts";
+import config from "./utils/amplify-config.ts";
 
 Amplify.configure(config);
 

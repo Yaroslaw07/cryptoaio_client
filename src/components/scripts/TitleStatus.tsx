@@ -44,6 +44,7 @@ const TitleStatus: FC<TitleStatusProps> = ({
           onChange={(e) => setTitleInput(e.target.value)}
           sx={{
             height: "60px",
+            width: "70%",
             fontSize: "1.1rem",
             "& .MuiOutlinedInput-root.Mui-disabled": {
               "& > fieldset": {

@@ -13,6 +13,10 @@ import NameStep from "../../components/new-script/NameStep";
 import JsonStep from "../../components/new-script/JsonStep";
 import FinishStep from "../../components/new-script/FinishStep";
 import { useNavigate } from "react-router-dom";
+import Script from "../../types/script";
+
+import { v4 as uuidv4 } from "uuid";
+import api from "../../api";
 
 const ColorlibStepLabel = styled(StepLabel)(() => ({
   [`& .${stepLabelClasses.label}`]: {
@@ -27,15 +31,24 @@ const ColorlibStepLabel = styled(StepLabel)(() => ({
   },
 }));
 
+const addNewScript = async (script: Partial<Script>) => {
+  return await api.post<Script>("scripts/", {
+    id: uuidv4(),
+    logs: "",
+    status: "Stopped",
+    ...script,
+  });
+};
+
 const NewScriptPage: FC = () => {
   const navigate = useNavigate();
   const { setTitle } = useAppBar();
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const [script, setScript] = useState({
+  const [script, setScript] = useState<Partial<Script>>({
     name: "",
-    json: "",
+    config: JSON.parse("{}"),
   });
 
   const handleNext = () => {
@@ -58,14 +71,20 @@ const NewScriptPage: FC = () => {
   };
 
   const submitJson = (json: string) => {
-    setScript({ ...script, json });
+    setScript({ ...script, config: JSON.parse(json) });
     handleNext();
   };
 
-  const submitNewScript = () => {
-    console.log("submitting");
-    console.log(script);
-    navigate("/scripts/1");
+  const submitNewScript = async () => {
+    try {
+      const newScript = await addNewScript(script);
+
+      const id = newScript.data.id;
+
+      navigate("/scripts/" + id);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -95,12 +114,12 @@ const NewScriptPage: FC = () => {
         }}
       >
         {activeStep === 0 && (
-          <NameStep onSubmit={submitName} basicName={script.name} />
+          <NameStep onSubmit={submitName} basicName={script.name!} />
         )}
 
         {activeStep === 1 && (
           <JsonStep
-            basicJson={script.json}
+            basicJson={JSON.stringify(script.config, null, 2)}
             onSubmit={submitJson}
             onBack={handleBack}
           />
@@ -108,8 +127,8 @@ const NewScriptPage: FC = () => {
 
         {activeStep === 2 && (
           <FinishStep
-            json={script.json}
-            name={script.name}
+            json={JSON.stringify(script.config, null, 2)}
+            name={script.name!}
             onBack={handleBack}
             onSubmit={submitNewScript}
           />

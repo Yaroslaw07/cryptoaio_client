@@ -1,18 +1,17 @@
 {
   "scripts": [
     {
-      "id": 1,
-      "name": "Script One",
+      "id": "1",
+      "name": "Script Onewe",
       "logs": "Log information for Script One...",
       "config": {
         "param1": "value1",
-        "param2": "value2",
-        "param3": 123
+        "param2": "value2"
       },
-      "status": "Running"
+      "status": "Stopped"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Script Two",
       "logs": "Log information for Script Two...",
       "config": {
@@ -23,7 +22,7 @@
       "status": "Stopped"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Script Three",
       "logs": "Log information for Script Three...",
       "config": {
@@ -34,7 +33,7 @@
       "status": "Running"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Script Four",
       "logs": "Log information for Script Four...",
       "config": {
@@ -45,7 +44,7 @@
       "status": "Stopped"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Script Five",
       "logs": "Log information for Script Five...",
       "config": {
@@ -56,7 +55,7 @@
       "status": "Running"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Script One",
       "logs": "Log information for Script One...",
       "config": {
@@ -65,6 +64,15 @@
         "param3": 123
       },
       "status": "Running"
+    },
+    {
+      "id": "73b77f9b-4e77-4a4a-aebe-bf72effaf9c5",
+      "logs": "",
+      "status": "Stopped",
+      "name": "HEllo",
+      "config": {
+        "name": "daw"
+      }
     }
   ]
 }

@@ -1,9 +1,8 @@
 enum ScriptStatus {
-  Running = "running",
-  Stopped = "stopped",
-  Finished = "finished",
-  Error = "error",
-  NotStarted = "notStarted",
+  Running = "Running",
+  Stopped = "Stopped",
+  Finished = "Finished",
+  Error = "Error",
 }
 
 export default ScriptStatus;

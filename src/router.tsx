@@ -5,7 +5,10 @@ import SignUp from "./pages/auth/Signup";
 import LoginPage from "./pages/auth/Login";
 import UserLayout from "./components/layout/UserLayout";
 import { DashboardPage, loader as DashboardLoader } from "./pages/Dashboard";
-import ScriptPage from "./pages/scripts/ScriptPage";
+import {
+  ScriptPage,
+  loader as ScriptPageLoader,
+} from "./pages/scripts/ScriptPage";
 import NewScriptPage from "./pages/scripts/NewScriptPage";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -44,6 +47,7 @@ const router = createBrowserRouter([
           {
             path: "/scripts/:scriptId",
             element: <ScriptPage />,
+            loader: ScriptPageLoader(queryClient),
           },
           {
             path: "/scripts/new",

@@ -4,40 +4,79 @@ import useAppBar from "../../hooks/useAppBar";
 import TitleStatus from "../../components/scripts/TitleStatus";
 import JsonConfig from "../../components/scripts/JsonConfig";
 import Logs from "../../components/scripts/Logs";
+import api from "../../api";
+import { QueryClient } from "@tanstack/react-query";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { AxiosResponse } from "axios";
+import Script from "../../types/script";
 
-let script = {
-  id: 1,
-  name: "Name of script",
-  status: "Stopped",
-  json: '{"key": "value"}',
-  logs: "Log 1\nLog2\nLog3\nLog4\nLog5\n",
+const getScriptById = (id: number) => ({
+  queryKey: ["scripts", id],
+  queryFn: async () => api.get("/scripts/?id=" + id),
+});
+
+export const loader =
+  (queryClient: QueryClient) =>
+  async ({ params }: { params: { scriptId: number } }) => {
+    console.log(params);
+    const query = getScriptById(params.scriptId);
+
+    return (
+      queryClient.getQueryData(query.queryKey) ??
+      (await queryClient.fetchQuery(query))
+    );
+  };
+
+const updateScript = async (
+  id: number,
+  newScript: Script
+): Promise<AxiosResponse<Script>> => {
+  return api.put(`/scripts/${id}`, newScript);
 };
 
-const ScriptPage = () => {
-  const { setTitle: setAppBarTitle } = useAppBar();
+export const ScriptPage = () => {
+  const navigate = useNavigate();
+  const { data } = useLoaderData() as AxiosResponse;
 
-  const [status, setStatus] = useState(script.status);
+  const [script, setScript] = useState<Script>(data[0]);
+
+  const { setTitle: setAppBarTitle } = useAppBar();
 
   const [editName, setEditName] = useState(false);
   const [editJson, setEditJsonInput] = useState(false);
 
-  const saveName = (name: string) => {
+  const saveName = async (name: string) => {
+    const updatedScript = await updateScript(script.id, { ...script, name });
     setEditName(false);
-    script = { ...script, name: name };
+    setScript(updatedScript.data);
   };
 
-  const saveJson = (json: string) => {
+  const saveJson = async (json: string) => {
+    const config = JSON.parse(json);
+    const updatedScript = await updateScript(script.id, { ...script, config });
     setEditJsonInput(false);
-    script = { ...script, json: json };
+    setScript(updatedScript.data);
   };
 
-  const handleScriptAction = () => {
-    setStatus(status === "Running" ? "Stopped" : "Running");
+  const handleScriptAction = async () => {
+    const newScipt = {
+      ...script,
+      status: script.status === "Running" ? "Stopped" : "Running",
+    };
+    const updatedScript = await updateScript(script.id, newScipt);
+    setScript(updatedScript.data);
   };
+
+  const json = JSON.stringify(script.config, null, 2);
 
   useEffect(() => {
-    setAppBarTitle(script.name);
-  }, [script.name]);
+    setAppBarTitle(script?.name);
+  }, [script?.name]);
+
+  if (data.length === 0) {
+    navigate("/dashboard");
+    return <div></div>;
+  }
 
   return (
     <Card
@@ -46,24 +85,24 @@ const ScriptPage = () => {
         paddingX: "24px",
         paddingY: "16px",
         gap: "50px",
-        maxWidth: "700px",
+        maxWidth: "650px",
         margin: "auto",
       }}
     >
       <TitleStatus
         title={script.name}
         saveTitle={saveName}
-        status={status}
+        status={script.status}
         editTitle={editName}
         setEditTitle={setEditName}
       />
 
       <JsonConfig
-        json={script.json}
+        json={json}
         saveJson={saveJson}
         editJson={editJson}
         setEditJsonInput={setEditJsonInput}
-        isEditable={status === "Stopped"}
+        isEditable={script.status === "Stopped"}
       />
 
       <Logs logs={script.logs} />
@@ -72,13 +111,11 @@ const ScriptPage = () => {
         variant="contained"
         fullWidth
         sx={{ fontSize: "1rem", fontWeight: "600" }}
-        disabled={status === "Stopped" && editJson}
+        disabled={script.status === "Stopped" && editJson}
         onClick={handleScriptAction}
       >
-        {status === "Running" ? "Stop script" : "Start script"}
+        {script.status === "Running" ? "Stop script" : "Start script"}
       </Button>
     </Card>
   );
 };
-
-export default ScriptPage;
