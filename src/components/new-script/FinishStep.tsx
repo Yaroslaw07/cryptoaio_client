@@ -12,9 +12,13 @@ interface FinishStepProps {
 const FinishStep: FC<FinishStepProps> = ({ name, json, onSubmit, onBack }) => {
   return (
     <Stack direction={"column"} spacing={2} sx={{ width: "100%" }}>
-      <Typography variant="h6">Step 3: Finish Process with Review</Typography>
+      <Typography variant="h6" textAlign={"center"}>
+        Step 3: Review and submit
+      </Typography>
 
-      <Typography variant="h4">Name:{name}</Typography>
+      <Typography variant="h4" textAlign={"center"}>
+        Name:{name}
+      </Typography>
 
       <TextField
         id="outlined-multiline-static"
@@ -36,7 +40,7 @@ const FinishStep: FC<FinishStepProps> = ({ name, json, onSubmit, onBack }) => {
           Back
         </Button>
         <Button fullWidth variant="contained" onClick={onSubmit}>
-          Next
+          Finish
         </Button>
       </Stack>
     </Stack>

@@ -4,9 +4,12 @@ import Layout from "./components/layout/Layout";
 import SignUp from "./pages/auth/Signup";
 import LoginPage from "./pages/auth/Login";
 import UserLayout from "./components/layout/UserLayout";
-import { DashboardPage } from "./pages/Dashboard";
+import { DashboardPage, loader as DashboardLoader } from "./pages/Dashboard";
 import ScriptPage from "./pages/scripts/ScriptPage";
 import NewScriptPage from "./pages/scripts/NewScriptPage";
+import { QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,7 @@ const router = createBrowserRouter([
           {
             path: "/dashboard",
             element: <DashboardPage />,
+            loader: DashboardLoader(queryClient),
           },
           {
             path: "/profile",

@@ -11,28 +11,29 @@ import ScriptCard from "../components/dashboard/GridScriptCard";
 import useAppBar from "../hooks/useAppBar";
 import { Icons } from "../components/Icons";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import api from "../api";
+import { QueryClient } from "@tanstack/react-query";
+import scriptInfo from "../types/scriptInfo";
 
-const scripts = [
-  {
-    id: 1,
-    name: "Script 1",
-    status: "Running",
-  },
-  {
-    id: 2,
-    name: "Script 2",
-    status: "Stopped",
-  },
-  {
-    id: 3,
-    name: "Script 3",
-    status: "Error",
-  },
-];
+const getAllScripts = () => ({
+  queryKey: ["scripts"],
+  queryFn: async () => api.get("/scripts"),
+});
+
+export const loader = (queryClient: QueryClient) => async () => {
+  const query = getAllScripts();
+
+  return (
+    queryClient.getQueryData(query.queryKey) ??
+    (await queryClient.fetchQuery(query))
+  );
+};
 
 export const DashboardPage = () => {
   const { setTitle } = useAppBar();
+
+  const { data: scripts } = useLoaderData() as { data: scriptInfo[] };
 
   const navigate = useNavigate();
 
@@ -66,6 +67,7 @@ export const DashboardPage = () => {
             </InputAdornment>
           }
           sx={{ flex: 1, height: "95%" }}
+          disabled={true}
         />
 
         <Button

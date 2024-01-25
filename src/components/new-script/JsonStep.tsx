@@ -54,7 +54,7 @@ const JsonStep: FC<JsonStepProps> = ({ basicJson, onSubmit, onBack }) => {
           variant="contained"
           onClick={handleJsonSubmit}
         >
-          Finish
+          Next
         </Button>
       </Stack>
     </Stack>

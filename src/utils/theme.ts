@@ -28,9 +28,12 @@ const theme = createTheme({
           padding: "8px 16px",
           "&.Mui-disabled": {
             background: "#1c1c1c",
-            color: "#ededed",
+            color: "#3c634b",
             border: "1px solid #3c634b",
           },
+        },
+        outlined: {
+          color: "#ededed",
         },
       },
     },

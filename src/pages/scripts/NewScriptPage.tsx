@@ -91,7 +91,7 @@ const NewScriptPage: FC = () => {
           justifyContent: "start",
           paddingX: "60px",
           paddingY: "20px",
-          width: "600px",
+          width: "400px",
         }}
       >
         {activeStep === 0 && (
