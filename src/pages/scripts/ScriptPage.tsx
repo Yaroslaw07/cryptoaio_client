@@ -18,11 +18,11 @@ const ScriptPage = () => {
 
   const [status, setStatus] = useState(script.status);
 
-  const [editTitle, setEditTitle] = useState(false);
+  const [editName, setEditName] = useState(false);
   const [editJson, setEditJsonInput] = useState(false);
 
-  const saveTitle = (name: string) => {
-    setEditTitle(false);
+  const saveName = (name: string) => {
+    setEditName(false);
     script = { ...script, name: name };
   };
 
@@ -52,10 +52,10 @@ const ScriptPage = () => {
     >
       <TitleStatus
         title={script.name}
-        saveTitle={saveTitle}
+        saveTitle={saveName}
         status={status}
-        editTitle={editTitle}
-        setEditTitle={setEditTitle}
+        editTitle={editName}
+        setEditTitle={setEditName}
       />
 
       <JsonConfig

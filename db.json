@@ -1,0 +1,70 @@
+{
+  "scripts": [
+    {
+      "id": 1,
+      "name": "Script One",
+      "logs": "Log information for Script One...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": 123
+      },
+      "status": "Running"
+    },
+    {
+      "id": 2,
+      "name": "Script Two",
+      "logs": "Log information for Script Two...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": true
+      },
+      "status": "Stopped"
+    },
+    {
+      "id": 3,
+      "name": "Script Three",
+      "logs": "Log information for Script Three...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": "some string"
+      },
+      "status": "Running"
+    },
+    {
+      "id": 4,
+      "name": "Script Four",
+      "logs": "Log information for Script Four...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": false
+      },
+      "status": "Stopped"
+    },
+    {
+      "id": 5,
+      "name": "Script Five",
+      "logs": "Log information for Script Five...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": "another string"
+      },
+      "status": "Running"
+    },
+    {
+      "id": 6,
+      "name": "Script One",
+      "logs": "Log information for Script One...",
+      "config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": 123
+      },
+      "status": "Running"
+    }
+  ]
+}

@@ -29,6 +29,7 @@ const ColorlibStepLabel = styled(StepLabel)(() => ({
 
 const NewScriptPage: FC = () => {
   const navigate = useNavigate();
+  const { setTitle } = useAppBar();
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -36,8 +37,6 @@ const NewScriptPage: FC = () => {
     name: "",
     json: "",
   });
-
-  const { setTitle } = useAppBar();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
