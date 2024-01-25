@@ -22,12 +22,8 @@ const getAllScripts = () => ({
 });
 
 export const loader = (queryClient: QueryClient) => async () => {
-  const query = getAllScripts();
-
-  return (
-    queryClient.getQueryData(query.queryKey) ??
-    (await queryClient.fetchQuery(query))
-  );
+  const data = await queryClient.fetchQuery(getAllScripts());
+  return data;
 };
 
 export const DashboardPage = () => {

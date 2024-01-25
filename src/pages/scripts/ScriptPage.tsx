@@ -18,13 +18,12 @@ const getScriptById = (id: number) => ({
 export const loader =
   (queryClient: QueryClient) =>
   async ({ params }: { params: { scriptId: number } }) => {
-    console.log(params);
-    const query = getScriptById(params.scriptId);
+    return await queryClient.fetchQuery(getScriptById(params.scriptId));
 
-    return (
-      queryClient.getQueryData(query.queryKey) ??
-      (await queryClient.fetchQuery(query))
-    );
+    // return (
+    //   queryClient.getQueryData(query.queryKey) ??
+    //   (await queryClient.fetchQuery(query))
+    // );
   };
 
 const updateScript = async (
@@ -36,6 +35,7 @@ const updateScript = async (
 
 export const ScriptPage = () => {
   const navigate = useNavigate();
+
   const { data } = useLoaderData() as AxiosResponse;
 
   const [script, setScript] = useState<Script>(data[0]);
@@ -59,11 +59,11 @@ export const ScriptPage = () => {
   };
 
   const handleScriptAction = async () => {
-    const newScipt = {
+    const newScript = {
       ...script,
       status: script.status === "Running" ? "Stopped" : "Running",
     };
-    const updatedScript = await updateScript(script.id, newScipt);
+    const updatedScript = await updateScript(script.id, newScript);
     setScript(updatedScript.data);
   };
 

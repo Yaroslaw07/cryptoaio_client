@@ -8,7 +8,7 @@
         "param1": "value1",
         "param2": "value2"
       },
-      "status": "Stopped"
+      "status": "Running"
     },
     {
       "id": "2",
@@ -41,7 +41,7 @@
         "param2": "value2",
         "param3": false
       },
-      "status": "Stopped"
+      "status": "Running"
     },
     {
       "id": "5",
@@ -72,6 +72,15 @@
       "name": "HEllo",
       "config": {
         "name": "daw"
+      }
+    },
+    {
+      "id": "eb4d01a4-c339-4ade-9068-8ab0bfe78ab7",
+      "logs": "",
+      "status": "Running",
+      "name": "HWe",
+      "config": {
+        "name": "hello"
       }
     }
   ]
